@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post" class="form-signin" style="max-width: 330px; margin: auto;">  
+  {% csrf_token %}  
+    {% comment %} {{ form.as_ul }}   {% endcomment %}
+
+    {% for field in form %}
+
+            {{field.label_tag}}
+            {{field}}
+            {% comment %} {{field.label_tag}} {% endcomment %}
+            {% if field.errors%}
+            {% for error in field.errors %}
+            <div class="alert alert-danger">
+                {{error}}
+            </div>
+            {% endfor %}
+            {% endif %}
+ 
+        {% endfor %}
+   
+        {% comment %} <input type="submit" value="Send" > {% endcomment %}
+
+    <input class="btn btn-lg btn-primary btn-block mt-3" type="submit" value="Зарегистрироваться">  
+</form>  
+{% endblock %}
